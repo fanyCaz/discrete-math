@@ -39,7 +39,7 @@ def subsetOfSet(subset,superset):  #A subset of B
 
 # zip function         https://www.geeksforgeeks.org/zip-in-python/
 # bitwise << operator  https://www.geeksforgeeks.org/python-bitwise-operators/
-def PowerSet(s):
+def PowerSet(s):    #All subsets possible in this one, including the empty
     x = len(s)
     masks = [1 << i for i in range(x)]
     for i in range(1 << x):
@@ -59,9 +59,26 @@ addToSetEvens(Evens, 6)
 print("Evens added : {}".format(Evens))
 
 cartesianProduct(A,Evens)
-
+print("\n")
 #print( "A = B : {} ".format(equalSets(A,B)) ) #this function is the same as the boolean comparison in python
 print( "A = B : {} ".format( A == B ))
 print( "A is Subset of B : {} ".format(subsetOfSet(C,B)) )
 
+print("POWER SET")
 print(list(PowerSet([4, 5, 6])))
+print("\n")
+print("UNION A WITH B")
+print( A.union(B) )
+print("UNION B WITH A")
+print( B.union(A) )
+print("\n")
+print("INTERSECTION A WITH B")
+print( A.intersection(B) )
+print("INTERSECTION B WITH A")
+print( B.intersection(A) )
+print("\n")
+print("DIFFERENCE A WITH B")
+print( A.difference(B) )
+print("DIFFERENCE B WITH A")
+print( B.difference(A) )
+print("SYMMETRIC A WITH B: {}".format(A.difference(B).union(B.difference(A))))
