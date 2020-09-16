@@ -82,3 +82,16 @@ print( A.difference(B) )
 print("DIFFERENCE B WITH A")
 print( B.difference(A) )
 print("SYMMETRIC A WITH B: {}".format(A.difference(B).union(B.difference(A))))
+#Examples from book Discrethe Math by Richard Johnsonbaugh
+print("EX")
+U = [i for i in range(11)]
+U = set(U)
+A = {1,4,7,10}
+B = {1,2,3,4,5}
+C = {2,4,6,8}
+
+print("1. A union B = {}".format(A.union(B)))
+print("2. B intersection C= {}".format(B.intersection(C)))
+print("3. A - B = {}".format(A-B))
+print("4. -A = {}".format(U-A))
+print("Union U with A {} ".format(U.union(A)))
