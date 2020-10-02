@@ -6,8 +6,6 @@ namespace graphs
     public class AdjacencyList
     {
         LinkedList<Tuple<int, int>>[] adjList;
-
-        // Constructor - creates an empty Adjacency List
         public AdjacencyList(int vertices)
         {
             adjList = new LinkedList<Tuple<int, int>>[vertices];
@@ -18,7 +16,6 @@ namespace graphs
             }
         }
 
-        // Appends a new Edge to the linked list
         public void agregaVertice(int startVertex, int endVertex, int weight)
         {
             adjList[startVertex].AddLast(new Tuple<int, int>(endVertex, weight));

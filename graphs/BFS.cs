@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace graphs{
     class BFS{
@@ -56,23 +57,37 @@ namespace graphs{
             Console.WriteLine($"Cantidad de nodos : {nodes}");
             initializeArrays(nodes);
             visited[startNode] = true;
+            
+            int j = 0;
             while(q.Count > 0){
                 int node = q.Dequeue();
                 var vecinos = g[node];
+                int costoLocal = 0;
+                List<int> costoCamino = new List<int>();
                 foreach(Tuple<int,int> i in vecinos){
                     if(!visited[i.Item1]){
+                     
+                        costoLocal = i.Item2;
+                        costoCamino.Add(costoLocal);
+                        Console.WriteLine($"Nodo visitado : {i.Item1}");
                         q.Enqueue(i.Item1);
                         visited[i.Item1] = true;
                         prev[i.Item1] = node;
                     }
+                    int minim = costoCamino.Min();
+                    var costoMaximo =  costoCamino.IndexOf(minim);
+                    Console.WriteLine($"Costo maximo : {costoMaximo}");
                 }
+                    
+                costoCamino.Add(costoLocal);
+                
             }
             return prev;
         }
 
         public static List<int> reconstructPath(int sN, int eN){
             List<int> path = new List<int>();
-            int? val = prev[0];
+
             for(int? i = eN; i is int; i = prev[i.Value]){
                 Console.WriteLine($"Nodo visitado: {i.Value}");
                 path.Add(i.Value);
@@ -87,6 +102,9 @@ namespace graphs{
 
         public static void exploration(int startNode, int endNode){
             var prev = solve(startNode);
+            /* foreach(int? i in prev){
+                Console.WriteLine($"EN PREV : {i}");
+            } */
             reconstructPath(startNode,endNode);
         }
         public static void Init(){
