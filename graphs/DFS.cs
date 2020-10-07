@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+
 namespace graphs
 {
     class DFS{
@@ -79,15 +80,41 @@ namespace graphs
 
             
         }
-
+        static bool[] initVisitados(){
+            bool[] visitados = new bool[n];
+            for(int i = 0; i < n; i++){
+                visitados[i] = false;
+            }
+            return visitados;
+        }
+        static List<int> nVisitados = new List<int>();
+        //My approach, of how to solve it : look for a path
+        static bool solve(AdjacencyList g, int nI, int nF,bool[] visitados){
+            int at = nI;
+            var vecinos = g[at];
+            if(at == nF){
+                Console.WriteLine($"Se cumple");
+                return true;
+            }
+            foreach(var i in vecinos){
+                if(!visitados[i.Item1]){
+                    Console.WriteLine($"Vecino de {at} : {i.Item1}");
+                    visitados[i.Item1] = true;
+                    nVisitados.Add(i.Item1);
+                    return solve(g,i.Item1,nF,visitados);
+                }
+            }
+            return false;
+        }
         public static void Init(){
-            initializeValues();
-            //int startNode = 0;
-            //exploration(startNode);
-            var result = findComponents();
-            foreach(int x in result.Keys){
-                Console.WriteLine($"value key : {x}");
-                Console.WriteLine(result.GetValueOrDefault(x));
+            n = 8;
+            bool[] visitados = initVisitados();
+            AdjacencyList g =  Program.initializeDAG(n);
+            int nodoInicial = 3, nodoFinal= 7;
+            bool hasPath = solve(g,nodoInicial,nodoFinal,visitados);
+            Console.WriteLine($"so has it? {hasPath}");
+            foreach(int i in nVisitados){
+                Console.WriteLine(i);
             }
         }
     }

@@ -42,7 +42,6 @@ namespace graphs{
             List<int> path = new List<int>();
 
             for(int? i = eN; i is int; i = prev[i.Value]){
-                Console.WriteLine($"Nodo visitado: {i.Value}");
                 path.Add(i.Value);
             }
             path.Reverse();
@@ -55,12 +54,15 @@ namespace graphs{
 
         public static void exploration(int startNode, int endNode){
             var prev = solve(startNode);
-            reconstructPath(startNode,endNode);
+            var path = reconstructPath(startNode,endNode);
+            foreach(var i in path){
+                Console.WriteLine($"Nodo visitado: {i}");
+            }
         }
         public static void Init(){
-            nodes = 7;
-            g = Program.initializeGraph(nodes);
-            exploration(0,5);
+            nodes = 8;
+            g = Program.initializeDAG(8);
+            exploration(3,7);
         }
     }
 }
