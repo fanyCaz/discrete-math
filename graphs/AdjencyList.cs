@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+//usa tuples
 namespace graphs
 {
     public class AdjacencyList

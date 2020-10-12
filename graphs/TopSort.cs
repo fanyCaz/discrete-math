@@ -37,7 +37,7 @@ namespace graphs{
         }
         static int[] solve(){
             int numNodos = 8;
-            g = Program.initializeDAG(numNodos);
+            g = Program.initializeDAG();
              bool[] visited = initializeVisited(numNodos);
              int[] ordering = initializeOrderint(numNodos);
             int i = numNodos -1;    //track the position of the next element

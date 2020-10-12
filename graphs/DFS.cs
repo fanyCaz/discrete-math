@@ -109,7 +109,7 @@ namespace graphs
         public static void Init(){
             n = 8;
             bool[] visitados = initVisitados();
-            AdjacencyList g =  Program.initializeDAG(n);
+            AdjacencyList g =  Program.initializeDAG();
             int nodoInicial = 3, nodoFinal= 7;
             bool hasPath = solve(g,nodoInicial,nodoFinal,visitados);
             Console.WriteLine($"so has it? {hasPath}");

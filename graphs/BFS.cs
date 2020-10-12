@@ -61,7 +61,7 @@ namespace graphs{
         }
         public static void Init(){
             nodes = 8;
-            g = Program.initializeDAG(8);
+            g = Program.initializeDAG();
             exploration(3,7);
         }
     }

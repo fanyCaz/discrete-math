@@ -8,9 +8,8 @@ namespace graphs
         static AdjacencyList g;
         static void Main(string[] args)
         {
-            BFS.Init();
+            Viajero.Init();
         }
-
         public static AdjacencyList initializeCyclicGraph(int nodes){
             h = new AdjacencyList(nodes);
             h.agregaVertice(0,1,3);
@@ -50,24 +49,24 @@ namespace graphs
             return h;
         }
         //from,to,cost  ---> 0 -> 1 -> 2 ,3 -> 4,5,6 -> 7 
-        public static AdjacencyList initializeDAG(int nodes){
-            g = new AdjacencyList(nodes);
-            g.agregaVertice(0,1,0);
-            g.agregaVertice(1,2,0);
-            g.agregaVertice(1,3,0);
-            g.agregaVertice(2,4,0);
-            g.agregaVertice(2,5,0);
-            g.agregaVertice(3,6,0);
-            g.agregaVertice(4,7,0);
-            g.agregaVertice(5,7,0);
-            g.agregaVertice(6,5,0);
-            g.agregaVertice(6,7,0);
+        public static AdjacencyList initializeDAG(){
+            g = new AdjacencyList(8);
+            g.agregaVertice(0,1,5);
+            g.agregaVertice(1,2,11);
+            g.agregaVertice(1,3,10);
+            g.agregaVertice(2,4,14);
+            g.agregaVertice(2,5,13);
+            g.agregaVertice(3,6,11);
+            g.agregaVertice(4,7,12);
+            g.agregaVertice(5,7,5);
+            g.agregaVertice(6,5,4);
+            g.agregaVertice(6,7,9);
             return g;
         }
 
          //This graph has weights , but in BFS it is not necessary and is cyclic
-        public static AdjacencyList initializeGraph(int nodes){
-            g = new AdjacencyList(nodes);
+        public static AdjacencyList initializeGraph(){
+            g = new AdjacencyList(7);
             g.agregaVertice(0,3,12);
             g.agregaVertice(0,1,9);
             g.agregaVertice(0,2,8);

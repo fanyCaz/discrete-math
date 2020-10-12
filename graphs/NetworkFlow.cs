@@ -6,7 +6,7 @@ namespace graphs
 {
     //Edmunds-Karp
     class NetworkFlow{
-        static AdjacencyListFlow g;
+        static AdjacencyList g;
         static int nodes;
         static bool[] initVisited(){
             bool[] visited = new bool[nodes];
@@ -32,8 +32,8 @@ namespace graphs
             while(q.Count > 0){
                 int node = q.Dequeue();
                 var vecinos = g[node];
-                foreach(Tuple<int,int,int> i in vecinos){
-                    if(pred[i.Item1] == null && i.Item1 != startNode && i.Item2 > i.Item3){
+                foreach(Tuple<int,int> i in vecinos){
+                    if(pred[i.Item1] == null && i.Item1 != startNode){
                         Console.WriteLine($"Nodo visitado : {i.Item1}");
                         q.Enqueue(i.Item1);
                         visited[i.Item1] = true;
@@ -56,7 +56,7 @@ namespace graphs
         }
         static void solve(){
             nodes = 8;
-           // g = Program.initializeCyclicGraph(nodes);
+            //g = Program.initializeCyclicGraph(nodes);
             int nodoInicial = 7,nodoFinal = 4;
             int at = nodoInicial;
             busqueda(nodoInicial,nodoFinal);
@@ -64,6 +64,7 @@ namespace graphs
             
         }
         public static void Init(){
+            g = Program.initializeCyclicGraph(8);
             solve();
         }
     }
