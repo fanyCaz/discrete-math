@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 namespace graphs
 {
     class Viajero{
         static AdjacencyList g;
+        static AdjencyMatrix matrix;
         static int costo = 0;
         static bool[] visitados;
         static int?[] path;
@@ -17,6 +19,8 @@ namespace graphs
                 path[i] = null;
             }
         }
+        /*Función que busca el camino más corto en un grafo
+        /* basándose en los pesos de cada nodo al que visita*/
         static List<Tuple<int,int>> camino = new List<Tuple<int, int>>();
         static void greedySearch(int nI,int nF){
             if(nI == nF){
@@ -29,7 +33,7 @@ namespace graphs
             Tuple<int,int> cm = new Tuple<int, int>(0,0);
             foreach(var i in vecinos){
                 Console.WriteLine($" nodo : {i.Item1} costo: {i.Item2} visit? {visitados[i.Item1]}");
-                //verifica si ya se ha visitado ese nodo
+                //verifica si no se ha visitado ese nodo
                 if(!visitados[i.Item1]){
                     //Si encuentra el valor primero, se detiene el programa y se agrega al camino
                     if(i.Item1 == nF){
@@ -50,18 +54,19 @@ namespace graphs
             at = camino.Last().Item1;
             greedySearch(at,nF);
         }
-        
-        static List<int> reconstruirCamino(int nI,int nF){
-            List<int> camino = new List<int>();
-            for(int? i = nF; i is int; i = path[i.Value]){
-                camino.Add(i.Value);
-            }
-            camino.Reverse();
-            if(camino[0] == nI){                
-                return camino;
-            }
-            return new List<int>();
+
+        static void tsp(int startNode){
+            int N = matrix.Longitud();
         }
+
+        //Saleman
+        public static void InitSalesman(){
+            matrix = Program.matrizEjemplo();
+            tsp(0);
+            //usa un greedy algorithm
+        }
+
+        //Busca el camino más corto entre dos nodos
         public static void Init(){
             g = Program.initializeDAG();
             initializeArrays(8);
