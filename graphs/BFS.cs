@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace graphs{
@@ -53,15 +54,19 @@ namespace graphs{
         }
 
         public static void exploration(int startNode, int endNode){
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             var prev = solve(startNode);
             var path = reconstructPath(startNode,endNode);
             foreach(var i in path){
                 Console.WriteLine($"Nodo visitado: {i}");
             }
+            sw.Stop();
+            Console.WriteLine($"Tiempo Total: {sw.Elapsed}");
         }
         public static void Init(){
             nodes = 8;
-            g = Program.initializeDAG();
+            g = Program.initializeGraph();
             exploration(3,7);
         }
     }

@@ -9,6 +9,7 @@ namespace graphs
         static void Main(string[] args)
         {
             Viajero.Init();
+            //BFS.Init();
         }
         public static AdjacencyList initializeCyclicGraph(int nodes){
             h = new AdjacencyList(nodes);

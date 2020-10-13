@@ -23,17 +23,15 @@ namespace graphs
                 Console.WriteLine("No puedes visitarte a ti mismo");
                 return;
             }
-            int at = nI;
-            int costoMinimo = int.MaxValue;
+            int at = nI,costoMinimo = int.MaxValue;
             //Toma los vecinos de ese nodo
             var vecinos = g[at];
             Tuple<int,int> cm = new Tuple<int, int>(0,0);
             foreach(var i in vecinos){
                 Console.WriteLine($" nodo : {i.Item1} costo: {i.Item2} visit? {visitados[i.Item1]}");
-                //verifica si ya se ha visitado esa ciudad
+                //verifica si ya se ha visitado ese nodo
                 if(!visitados[i.Item1]){
                     //Si encuentra el valor primero, se detiene el programa y se agrega al camino
-                    
                     if(i.Item1 == nF){
                         camino.Add(new Tuple<int, int>(i.Item1,i.Item2));
                         return;
@@ -50,7 +48,6 @@ namespace graphs
             //se agrega al camino el nodo con el menor costo
             camino.Add(cm);
             at = camino.Last().Item1;
-            
             greedySearch(at,nF);
         }
         
@@ -66,9 +63,9 @@ namespace graphs
             return new List<int>();
         }
         public static void Init(){
-            g = Program.initializeGraph();
-            initializeArrays(7);
-            greedySearch(3,1);
+            g = Program.initializeDAG();
+            initializeArrays(8);
+            greedySearch(0,7);
             costo = 0;
             Console.WriteLine($"Recorrido");
             foreach(var i in camino){
