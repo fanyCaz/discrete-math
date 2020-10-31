@@ -8,8 +8,9 @@ namespace graphs
         static AdjacencyList g;
         static void Main(string[] args)
         {
-            Viajero.Init();
+            //Viajero.Init();
             //BFS.Init();
+            Viajero.InitSalesman();
         }
         public static AdjacencyList initializeCyclicGraph(int nodes){
             h = new AdjacencyList(nodes);
@@ -100,6 +101,16 @@ namespace graphs
             g.agregaVertice(6,3,15);
             g.agregaVertice(6,5,8);
             return g;
+        }
+
+        public static AdjencyMatrix matrizEjemplo(){
+            AdjencyMatrix matriz = new AdjencyMatrix(4);
+            matriz.agregarPesos(0,new int[]{0,4,1,9});
+            matriz.agregarPesos(1,new int[]{3,0,6,11});
+            matriz.agregarPesos(2,new int[]{4,1,0,2});
+            matriz.agregarPesos(3,new int[]{6,5,-4,0});
+            matriz.imprimirMatriz();
+            return matriz;
         }
     }
 }
